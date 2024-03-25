@@ -1,0 +1,39 @@
+.task-list-item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	border-radius: 0.525rem;
+	border: 1px solid var(--color-white-subb);
+	background-color: var(--color-white-main);
+	padding: 0.75rem;
+
+	&__label {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+
+		flex: auto;
+		max-width: 70%;
+
+		&-title {
+			display: flex;
+			width: 100%;
+
+			& > span {
+				width: 100%;
+
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		}
+	}
+
+	&__controls {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+}

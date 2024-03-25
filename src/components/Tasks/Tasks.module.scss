@@ -1,0 +1,12 @@
+.tasks {
+	width: 100%;
+	display: grid;
+	grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
+	gap: 1rem;
+
+	&-wrapper {
+		display: flex;
+		width: 100%;
+		overflow: hidden;
+	}
+}

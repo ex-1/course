@@ -1,0 +1,31 @@
+@import '@/styles/variables.scss';
+
+.app {
+	display: flex;
+	gap: 2.5rem;
+	width: 100%;
+
+	&__tasks-block,
+	&__tasks-list {
+		display: flex;
+		flex-direction: column;
+		padding: 0 0.5rem;
+	}
+
+	&__tasks-block {
+		flex: 65%;
+		max-width: 65%;
+	}
+	&__tasks-list {
+		flex: 35%;
+		max-width: 35%;
+	}
+
+	&-wrapper {
+		display: flex;
+		width: 100%;
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: 1rem;
+	}
+}

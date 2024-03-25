@@ -1,0 +1,33 @@
+@import '@/styles/variables.scss';
+@import '@/styles/fonts.css';
+
+:root {
+	--color-black-main: #{$color-black-main};
+	--color-black-sub: #{$color-black-sub};
+
+	--color-white-main: #{$color-white-main};
+	--color-white-sub: #{$color-white-sub};
+	--color-white-subb: #{$color-white-subb};
+
+	--color-status-green: #{$color-status-green};
+	--color-status-yellow: #{$color-status-yellow};
+	--color-status-red: #{$color-status-red};
+	--color-status-blue: #{$color-status-blue};
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 14px;
+	font-family: 'Rubik', sans-serif;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--color-white-sub);
+	color: var(--color-black-sub);
+}
