@@ -18,7 +18,7 @@ export default function TasksList() {
 						))}
 				</div>
 				<div className={classes['tasks-list__controls']}>
-					<Button onClick={handleOpenModal}>
+					<Button type='primary' onClick={handleOpenModal}>
 						<div className={classes['btn-inner']}>
 							<span>Создать задачу</span>
 							<InlineIcon name='plus' extraClass={classes['btn-inner__icon']} />

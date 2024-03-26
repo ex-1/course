@@ -7,10 +7,11 @@ export enum TaskStatus {
 }
 
 export enum TimeUnits {
-	Seconds = 'с.',
-	Minutes = 'м.',
-	Hours = 'ч.',
-	Days = 'д.'
+	Seconds = 'сек.',
+	Minutes = 'мин.',
+	Hours = 'час.',
+	Days = 'дн.',
+	Months = 'месяц.'
 }
 
 export interface Task {
