@@ -6,6 +6,8 @@ import TaskTimer from '../TaskTimer/TaskTimer'
 import { Button, Tooltip } from 'antd'
 import { useTaskItem } from './useTaskItem'
 import { getStatusName } from '@/utils/getStatusName'
+import dayjs from 'dayjs'
+import { dateFromat } from '@/config/placeholders'
 
 interface TaskItemProps {
 	data: Task
@@ -13,7 +15,16 @@ interface TaskItemProps {
 
 export default function TaskItem({ data }: TaskItemProps) {
 	const { handlePause, handleRemove, handleComplete } = useTaskItem(data)
+
 	const statusName = getStatusName(data.status)
+
+	const completedTime = data.completedTime
+		? dayjs(data.completedTime).format(dateFromat)
+		: null
+
+	const statusTooltip = completedTime
+		? `${statusName} (${completedTime})`
+		: statusName
 
 	return (
 		<div className={classes['task-wrapper']}>
@@ -21,7 +32,7 @@ export default function TaskItem({ data }: TaskItemProps) {
 				<h2 className={classes['task-header__label']} title={data.label}>
 					{data.label}
 				</h2>
-				<Tooltip placement='top' title={statusName}>
+				<Tooltip placement='left' title={statusTooltip}>
 					<div className={classes['task-header__icon']}>
 						<InlineIcon name={`status-${data.status}`} />
 					</div>
@@ -41,7 +52,10 @@ export default function TaskItem({ data }: TaskItemProps) {
 				<Button onClick={handleRemove}>
 					<InlineIcon name='trash-round' extraClass={classes['btn-icon']} />
 				</Button>
-				<Button onClick={handleComplete}>
+				<Button
+					disabled={data.status === TaskStatus.Completed}
+					onClick={handleComplete}
+				>
 					<InlineIcon
 						name='status-completed'
 						extraClass={classes['btn-icon']}

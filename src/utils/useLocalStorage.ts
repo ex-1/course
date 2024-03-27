@@ -72,8 +72,8 @@ export const useLocalStorage = () => {
 			const newTask: Task = {
 				...taskQueue[taskIndex],
 				status: TaskStatus.Running,
-				startTime: new Date().toISOString(),
-				point: new Date().toISOString()
+				startTime: dayjs().toISOString(),
+				point: dayjs().toISOString()
 			}
 
 			tasks.push(newTask)
@@ -105,7 +105,7 @@ export const useLocalStorage = () => {
 		const taskIndex = tasks.findIndex(t => t.id === id)
 
 		if (taskIndex !== -1 && tasks[taskIndex].status === TaskStatus.Paused) {
-			tasks[taskIndex].point = new Date().toISOString()
+			tasks[taskIndex].point = dayjs().toISOString()
 			tasks[taskIndex].status = TaskStatus.Running
 
 			storageApi.setItem('tasks', JSON.stringify(tasks))
@@ -117,9 +117,12 @@ export const useLocalStorage = () => {
 		const tasks: Task[] = JSON.parse(storageApi.getItem('tasks') || '[]')
 		const taskIndex = tasks.findIndex(t => t.id === id)
 
-		if (taskIndex !== -1 && tasks[taskIndex].status === TaskStatus.Completed) {
-			tasks[taskIndex].completedTime = new Date().toISOString()
+		if (taskIndex !== -1) {
+			if (tasks[taskIndex].status !== TaskStatus.Paused) {
+				tasks[taskIndex].total += dayjs().diff(tasks[taskIndex].point, 'second')
+			}
 			tasks[taskIndex].status = TaskStatus.Completed
+			tasks[taskIndex].completedTime = dayjs().toISOString()
 
 			storageApi.setItem('tasks', JSON.stringify(tasks))
 			window.dispatchEvent(new Event('tasks'))

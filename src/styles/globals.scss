@@ -13,6 +13,49 @@
 	--color-status-yellow: #{$color-status-yellow};
 	--color-status-red: #{$color-status-red};
 	--color-status-blue: #{$color-status-blue};
+
+	--gradient-status-green: linear-gradient(
+		90deg,
+		#{hsl(hue($color-status-green), 70%, 40%)},
+		#{hsl(hue($color-status-green), 70%, 60%)},
+		#{$color-status-green},
+		#{hsl(hue($color-status-green), 50%, 40%)}
+	);
+	--gradient-status-yellow: linear-gradient(
+		90deg,
+		#{hsl(hue($color-status-yellow), 70%, 40%)},
+		#{hsl(hue($color-status-yellow), 70%, 60%)},
+		#{$color-status-yellow},
+		#{hsl(hue($color-status-yellow), 50%, 40%)}
+	);
+	--gradient-status-red: linear-gradient(
+		90deg,
+		#{hsl(hue($color-status-red), 70%, 40%)},
+		#{hsl(hue($color-status-red), 70%, 60%)},
+		#{$color-status-red},
+		#{hsl(hue($color-status-red), 50%, 40%)}
+	);
+	--gradient-status-blue: linear-gradient(
+		90deg,
+		#{hsl(hue($color-status-blue), 70%, 40%)},
+		#{hsl(hue($color-status-blue), 70%, 60%)},
+		#{$color-status-blue},
+		#{hsl(hue($color-status-blue), 50%, 40%)}
+	);
+
+	--gradient-rainbow: linear-gradient(
+		90deg,
+		#ff2400,
+		#e81d1d,
+		#e8b71d,
+		#e3e81d,
+		#1de840,
+		#1ddde8,
+		#2b1de8,
+		#dd00f3,
+		#dd00f3,
+		#ff2400
+	);
 }
 
 *,

@@ -14,7 +14,8 @@ export const useTaskTimer = (data: TaskTimerProps) => {
 
 	useLayoutEffect(() => {
 		if (endTime) {
-			if (nowTime.isAfter(endTime) && data.status !== TaskStatus.Expired) {
+			if (data.status === TaskStatus.Completed) return
+			else if (nowTime.isAfter(endTime) && data.status !== TaskStatus.Expired) {
 				changeTaskStatus(data.id, TaskStatus.Expired)
 			}
 		}
@@ -27,7 +28,8 @@ export const useTaskTimer = (data: TaskTimerProps) => {
 	useEffect(() => {
 		const calculateTime = () => {
 			const spentTime =
-				data.status === TaskStatus.Paused
+				data.status === TaskStatus.Paused ||
+				data.status === TaskStatus.Completed
 					? data.total
 					: data.total + nowTime.diff(data.point, 'second')
 			setSpentTime(formatTime(spentTime))

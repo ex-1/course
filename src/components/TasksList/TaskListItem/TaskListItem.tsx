@@ -12,11 +12,8 @@ interface TaskListItemProps {
 }
 
 export default function TaskListItem({ data }: TaskListItemProps) {
-	const time = data.endTime
-		? `${dayjs(data.startTime).format(dateFromat)} - ${dayjs(
-				data.endTime
-		  ).format(dateFromat)}`
-		: `${dayjs(data.startTime).format(dateFromat)}`
+	const startTime = dayjs(data.startTime).format(dateFromat)
+	const endTime = data.endTime ? dayjs(data.endTime).format(dateFromat) : null
 
 	const { runTask, removeTask } = useLocalStorage()
 	const onClickRun = () => runTask(data.id)
@@ -29,7 +26,8 @@ export default function TaskListItem({ data }: TaskListItemProps) {
 					<span>{data.label}</span>
 				</div>
 				<div className={classes['task-list-item__label-time']}>
-					<span>{time}</span>
+					<span>{`Планируемая дата начала: ${startTime}`}</span>
+					{endTime && <span>{`Дедлайн: ${endTime}`}</span>}
 				</div>
 			</div>
 			<div className={classes['task-list-item__controls']}>

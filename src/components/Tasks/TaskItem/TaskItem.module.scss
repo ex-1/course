@@ -19,16 +19,21 @@
 		justify-content: space-between;
 		align-items: center;
 
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid var(--color-white-subb);
+
 		&__label {
-			font-size: 1.2rem;
 			flex: 1 1 auto;
-			line-height: 1.5rem;
 
 			max-width: 90%;
 
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
+
+			font-size: 1.2rem;
+			line-height: 1.5rem;
+			font-weight: 500;
 		}
 
 		&__icon {
@@ -51,11 +56,16 @@
 	}
 
 	&__description {
-		flex-grow: 1;
 		display: flex;
-		white-space: pre-wrap;
-		// width: 200px;
+		flex-grow: 1;
+
 		overflow: hidden;
+		white-space: pre-wrap;
+
+		text-align: left;
+		line-height: 1.35rem;
+		color: var(--color-black-sub);
+		font-size: 0.95rem;
 	}
 
 	&__controls {
