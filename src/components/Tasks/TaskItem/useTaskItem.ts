@@ -2,7 +2,7 @@ import { Task, TaskStatus } from '@/config/types'
 import { useLocalStorage } from '@/utils/useLocalStorage'
 
 export const useTaskItem = (data: Task) => {
-	const { pauseTask, unPauseTask } = useLocalStorage()
+	const { pauseTask, unPauseTask, removeTask, completeTask } = useLocalStorage()
 
 	const handlePause = () => {
 		if (data.status === TaskStatus.Running) {
@@ -12,5 +12,13 @@ export const useTaskItem = (data: Task) => {
 		}
 	}
 
-	return { handlePause }
+	const handleRemove = () => {
+		removeTask(data.id)
+	}
+
+	const handleComplete = () => {
+		completeTask(data.id)
+	}
+
+	return { handlePause, handleComplete, handleRemove }
 }

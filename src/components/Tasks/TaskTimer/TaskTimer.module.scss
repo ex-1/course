@@ -1,4 +1,45 @@
 @import '@/styles/variables.scss';
+@mixin ProgressBarColors {
+	&.running {
+		background-color: var(--color-status-blue);
+	}
+
+	&.paused {
+		background-color: var(--color-status-yellow);
+	}
+
+	&.completed {
+		background-color: var(--color-status-green);
+	}
+
+	&.expired {
+		background-color: var(--color-status-red);
+	}
+
+	&.rainbow {
+		@keyframes rainbow {
+			to {
+				background-position: -200% 0;
+			}
+		}
+
+		background: linear-gradient(
+			90deg,
+			#ff2400,
+			#e81d1d,
+			#e8b71d,
+			#e3e81d,
+			#1de840,
+			#1ddde8,
+			#2b1de8,
+			#dd00f3,
+			#dd00f3,
+			#ff2400
+		);
+		background-size: 200% 100%;
+		animation: rainbow 10s linear infinite;
+	}
+}
 
 .task-timer {
 	display: flex;
@@ -25,33 +66,10 @@
 			display: flex;
 			height: 100%;
 			border-radius: 0.625rem;
-			background-color: var(--color-status-blue);
 			will-change: width;
 			transition: width 300ms ease-in;
 
-			&.rainbow {
-				@keyframes rainbow {
-					to {
-						background-position: -200% 0;
-					}
-				}
-
-				background: linear-gradient(
-					90deg,
-					#ff2400,
-					#e81d1d,
-					#e8b71d,
-					#e3e81d,
-					#1de840,
-					#1ddde8,
-					#2b1de8,
-					#dd00f3,
-					#dd00f3,
-					#ff2400
-				);
-				background-size: 200% 100%;
-				animation: rainbow 10s linear infinite;
-			}
+			@include ProgressBarColors;
 		}
 	}
 
@@ -61,5 +79,11 @@
 		font-weight: 500;
 		text-align: center;
 		color: var(--color-black-sub);
+	}
+
+	&-wrapper {
+		display: flex;
+		width: 100%;
+		padding: 0.3rem 0;
 	}
 }

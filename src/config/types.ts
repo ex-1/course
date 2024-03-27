@@ -22,6 +22,7 @@ export interface Task {
 
 	startTime: string
 	endTime?: string
+	completedTime?: string
 
 	status: TaskStatus
 

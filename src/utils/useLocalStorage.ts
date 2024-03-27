@@ -20,13 +20,19 @@ export const useLocalStorage = () => {
 	}
 
 	// Tasks
+	const getNewId = () => {
+		const lastId = Number(storageApi.getItem('latestTaskId'))
+		storageApi.setItem('latestTaskId', String(lastId + 1))
+
+		return lastId
+	}
+
 	const addNewTask = (task: NewTask) => {
 		const taskQueue: Task[] = JSON.parse(
 			storageApi.getItem('taskQueue') || '[]'
 		)
 
-		const newId =
-			taskQueue.length > 0 ? taskQueue[taskQueue.length - 1].id + 1 : 0
+		const newId = getNewId()
 
 		const newTask: Task = {
 			...task,
@@ -107,18 +113,32 @@ export const useLocalStorage = () => {
 		}
 	}
 
+	const completeTask = (id: number) => {
+		const tasks: Task[] = JSON.parse(storageApi.getItem('tasks') || '[]')
+		const taskIndex = tasks.findIndex(t => t.id === id)
+
+		if (taskIndex !== -1 && tasks[taskIndex].status === TaskStatus.Completed) {
+			tasks[taskIndex].completedTime = new Date().toISOString()
+			tasks[taskIndex].status = TaskStatus.Completed
+
+			storageApi.setItem('tasks', JSON.stringify(tasks))
+			window.dispatchEvent(new Event('tasks'))
+		}
+	}
+
 	const removeTask = (id: number) => {
+		// Удаление задачи из tasks
 		const tasks: Task[] = JSON.parse(storageApi.getItem('tasks') || '[]')
 		const newTasks = tasks.filter(t => t.id !== id)
 		storageApi.setItem('tasks', JSON.stringify(newTasks))
+		window.dispatchEvent(new Event('tasks'))
 
+		// Удаление задачи из taskQueue
 		const taskQueue: Task[] = JSON.parse(
 			storageApi.getItem('taskQueue') || '[]'
 		)
 		const newTaskQueue = taskQueue.filter(t => t.id !== id)
 		storageApi.setItem('taskQueue', JSON.stringify(newTaskQueue))
-
-		window.dispatchEvent(new Event('tasks'))
 		window.dispatchEvent(new Event('taskQueue'))
 	}
 
@@ -139,6 +159,7 @@ export const useLocalStorage = () => {
 		getTaskQueue,
 		runTask,
 		pauseTask,
-		unPauseTask
+		unPauseTask,
+		completeTask
 	}
 }

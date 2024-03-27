@@ -53,8 +53,8 @@ export default function NewTaskModal({
 				>
 					<Input.TextArea
 						showCount
-						maxLength={150}
-						style={{ height: '100px', resize: 'none' }}
+						maxLength={400}
+						style={{ height: '150px', resize: 'none' }}
 						placeholder={fp.description.placeholder[0]}
 					/>
 				</Form.Item>

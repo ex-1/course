@@ -23,6 +23,7 @@ export default function TaskTimer(props: TaskTimerProps) {
 						<div
 							className={cn(
 								classes['task-timer__bar-inner'],
+								classes[props.status],
 								percent === null && classes['rainbow']
 							)}
 							style={{ width: `${percent ?? 100}%` }}
